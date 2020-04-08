@@ -1,11 +1,14 @@
-FROM maven:3.6.3-openjdk-15
+FROM debian:buster
 
 COPY src /app/src
 COPY pom.xml /app/pom.xml
 
 WORKDIR /app
 
+RUN apt update
+RUN apt install default-jdk maven -y
+RUN mvn clean install
+
 EXPOSE 80 8080
 
-RUN mvn clean install
 ENTRYPOINT [ "mvn", "tomcat7:run" ]
