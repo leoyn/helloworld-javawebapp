@@ -9,6 +9,6 @@ RUN apt update
 RUN apt install default-jdk maven -y
 RUN mvn clean install
 
-EXPOSE 80 8080
+EXPOSE 8080
 
 ENTRYPOINT [ "mvn", "tomcat7:run" ]
